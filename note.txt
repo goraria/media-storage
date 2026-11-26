@@ -1,0 +1,41 @@
+@gorth/media
+media-processing
+├── upload
+│   ├── image
+│   ├── video
+│   ├── audio
+│   ├── document
+│   └── attachment
+│
+├── storage
+│   ├── object
+│   ├── bucket
+│   ├── path
+│   ├── metadata
+│   └── lifecycle
+│
+├── image
+│   ├── resize
+│   ├── crop
+│   ├── optimize
+│   ├── thumbnail
+│   └── format
+│
+├── video
+│   ├── transcode
+│   ├── thumbnail
+│   ├── preview
+│   ├── adaptive-stream
+│   └── metadata
+│
+├── document
+│   ├── preview
+│   ├── convert
+│   ├── metadata
+│   └── extraction
+│
+└── delivery
+    ├── signed-url
+    ├── public-url
+    ├── CDN
+    └── access-control
