@@ -7,6 +7,8 @@ dist
 .env.local
 .env.*.local
 
+**/.DS_Store
+
 # Nitro build output
 .nitro/
 .output/
