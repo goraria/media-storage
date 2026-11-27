@@ -32,6 +32,7 @@ const root = new URL("../.vercel/output/", import.meta.url);
 const read = (path) => JSON.parse(readFileSync(new URL(path, root), "utf8"));
 const config = read("functions/__server.func/.vc-config.json");
 assert.equal(config.runtime, "nodejs24.x");
+assert.equal(config.maxDuration, 300);
 const expectedTopic = "media-jobs";
 const queuePath = "functions/_vercel/queues/consumer.func/.vc-config.json";
 assert.equal(existsSync(new URL(queuePath, root)), Boolean(expectedTopic));
@@ -40,7 +41,6 @@ if (expectedTopic) {
   assert.ok(triggers.some((trigger) =>
     trigger.type === "queue/v2beta" && trigger.topic === expectedTopic &&
     trigger.retryAfterSeconds === 60));
-  assert.equal(config.maxDuration, 540);
 }
 assert.deepEqual(
   (read("config.json").crons ?? []).map((cron) => cron.schedule).sort(),
@@ -63,11 +63,22 @@ for (const [path, method, expected] of checks) {
   const response = await handler.fetch(new Request("https://service.fixture.test" + path, { method }));
   assert.equal(response.status, expected, method + " " + path);
   assert.equal(response.headers.get("x-content-type-options"), "nosniff");
-  if (path === "/health") {
+  if (path === "/" || path === "/health") {
     assert.equal(upstreamRequests, upstreamBefore, "health must not call SSO or another upstream");
     assert.equal(quotaQueries, quotaBefore, "health must not read the quota store");
     if (method === "HEAD") assert.equal(await response.text(), "");
-    else assert.match((await response.json()).status, /^ok$/i);
+    else {
+      const payload = await response.json();
+      const status = { status: "ok", service: "media-storage" };
+      if (path === "/health") {
+        assert.equal(typeof payload.timestamp, "string");
+        assert.equal(new Date(payload.timestamp).toISOString(), payload.timestamp);
+        assert.ok(Number.isFinite(payload.uptime) && payload.uptime >= 0);
+        assert.deepEqual(payload, { ...status, timestamp: payload.timestamp, uptime: payload.uptime });
+      } else {
+        assert.deepEqual(payload, status);
+      }
+    }
   } else {
     await response.arrayBuffer();
   }

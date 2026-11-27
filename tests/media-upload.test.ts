@@ -1,5 +1,5 @@
 import { beforeEach, expect, it, vi } from "vitest";
-import type { AuthContext } from "@/types/auth";
+import type { AuthContext } from "@/utils/interface";
 import { createUploadSchema } from "@/schemas/media";
 import type { SQL } from "drizzle-orm";
 

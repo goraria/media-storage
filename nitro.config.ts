@@ -31,8 +31,8 @@ export default defineConfig({
   vercel: {
     entryFormat: "web",
     // Leave room for bounded storage I/O and probing around the 120-second encode.
-    // Keep below the existing ten-minute DB lease; requires a Pro/Enterprise duration limit.
-    functions: { runtime: "nodejs24.x", maxDuration: 540 },
+    // Stay within the Vercel Hobby limit with Fluid Compute.
+    functions: { runtime: "nodejs24.x", maxDuration: 300 },
     queues: { triggers: [{ topic: "media-jobs", retryAfterSeconds: 60 }] },
   },
 });

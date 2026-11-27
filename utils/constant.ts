@@ -1,6 +1,6 @@
 export const applicationNamespaces = ["sso", "chat", "video", "reader", "social", "task", "marketplace", "restaurant"] as const;
 
-export type GorthApplication = (typeof applicationNamespaces)[number];
+export type Application = (typeof applicationNamespaces)[number];
 
 export const mediaReadScopes = {
   sso: "sso:read",
@@ -11,7 +11,7 @@ export const mediaReadScopes = {
   task: "task:read",
   marketplace: "marketplace:read",
   restaurant: "restaurant:read",
-} satisfies Record<GorthApplication, string>;
+} satisfies Record<Application, string>;
 
 export const mediaWriteScopes = {
   sso: "sso:write",
@@ -22,4 +22,4 @@ export const mediaWriteScopes = {
   task: "task:write",
   marketplace: "marketplace:write",
   restaurant: "restaurant:write",
-} satisfies Record<GorthApplication, string>;
+} satisfies Record<Application, string>;

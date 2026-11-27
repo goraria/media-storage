@@ -7,7 +7,7 @@ import {
   storageProfileSchema,
   type StorageProfileInput,
 } from "@/schemas/storage-profile";
-import type { AuthContext } from "@/types/auth";
+import type { AuthContext } from "@/utils/interface";
 
 export async function rawGetStorageProfile(
   application: string,

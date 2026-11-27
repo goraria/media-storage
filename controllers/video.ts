@@ -1,12 +1,12 @@
 import { readRequestBody } from "@/utils/request";
-import type { ApiContext } from "@/types/auth";
+import type { Event } from "@/utils/interface";
 import { videoAssetSchema, videoDeliverySchema } from "@/schemas/video";
 import {
   rawPrepareVideoAsset as prepareVideoAssetServices,
   rawInspectVideoAsset as inspectVideoAssetServices,
   rawGetVideoAssetUrl as getVideoAssetUrlServices,
 } from "@/services/video";
-export async function actPrepareVideoAsset(e: ApiContext) {
+export async function actPrepareVideoAsset(e: Event) {
   const v = videoAssetSchema.parse(await readRequestBody(e.req));
   return e.json(
     await prepareVideoAssetServices(
@@ -16,7 +16,7 @@ export async function actPrepareVideoAsset(e: ApiContext) {
     ),
   );
 }
-export async function actInspectVideoAsset(e: ApiContext) {
+export async function actInspectVideoAsset(e: Event) {
   const v = videoAssetSchema.parse(await readRequestBody(e.req));
   return e.json(
     await inspectVideoAssetServices(
@@ -26,7 +26,7 @@ export async function actInspectVideoAsset(e: ApiContext) {
     ),
   );
 }
-export async function actGetVideoAssetUrl(e: ApiContext) {
+export async function actGetVideoAssetUrl(e: Event) {
   const v = videoDeliverySchema.parse(await readRequestBody(e.req));
   return e.json(
     await getVideoAssetUrlServices(

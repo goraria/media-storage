@@ -14,7 +14,7 @@ import {
   applicationNamespaces as applications,
   mediaReadScopes,
   mediaWriteScopes,
-} from "@/lib/constants";
+} from "@/utils/constant";
 import { nodeEnv, authUrl } from "@/utils/environment";
 import type { ServiceAccess } from "@/utils/interface";
 async function configuration() {

@@ -1,8 +1,8 @@
-import type { ApiEnv } from "@/types/auth";
+import type { Binding } from "@/utils/interface";
 import type { MiddlewareHandler } from "hono";
 import { verifyMachineRequest } from "@/lib/auth/machine";
 import { serviceAuthFailure } from "@/lib/auth/verification";
-export function requireChatWorker(): MiddlewareHandler<ApiEnv> {
+export function requireChatWorker(): MiddlewareHandler<Binding> {
   return async (event, next) => {
     try {
       await verifyMachineRequest(event.req.raw, "chat:media:delegate");

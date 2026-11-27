@@ -51,7 +51,7 @@ import type {
   UpdateVariantInput,
   UploadPartInput,
 } from "@/schemas/media";
-import type { AuthContext } from "@/types/auth";
+import type { AuthContext } from "@/utils/interface";
 import { processingPlan } from "@/lib/processing/ffmpeg";
 import { matchesChatSignature } from "@/utils/chat-media";
 
