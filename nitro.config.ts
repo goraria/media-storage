@@ -26,7 +26,8 @@ export default defineConfig({
   alias: { "@": import.meta.dirname },
   devServer: { port: Number(port) || 5057, hostname: "0.0.0.0" },
   experimental: { tasks: true },
-  scheduledTasks: { "* * * * *": "background:recover" },
+  // Vercel Hobby supports daily cron schedules.
+  scheduledTasks: { "0 0 * * *": "background:recover" },
   vercel: {
     entryFormat: "web",
     // Leave room for bounded storage I/O and probing around the 120-second encode.
