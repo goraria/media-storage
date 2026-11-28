@@ -1,4 +1,6 @@
 [
+  "GET /",
+  "GET /.well-known/oauth-protected-resource",
   "DELETE /media/asset/:id",
   "DELETE /media/bucket/:id",
   "DELETE /media/grant",

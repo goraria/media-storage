@@ -7,7 +7,7 @@ export function requireChatWorker(): MiddlewareHandler<Binding> {
     try {
       await verifyMachineRequest(event.req.raw, "chat:media:delegate");
     } catch (error) {
-      return serviceAuthFailure(error);
+      return serviceAuthFailure(error, event.req.raw);
     }
     return await next();
   };

@@ -1,5 +1,5 @@
 import { createMachineTokenRequest } from "@gorth-com/structure/modules/auth/server";
-import { getApplicationOrigin } from "@/utils/sso-directory";
+import { getApplicationOrigin } from "@/modules/structure/sso-directory";
 import {
   authUrl,
   isProduction,

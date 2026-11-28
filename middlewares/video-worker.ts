@@ -7,7 +7,7 @@ export function requireVideoWorker(): MiddlewareHandler<Binding> {
     try {
       await verifyMachineRequest(e.req.raw, "video:media:delegate");
     } catch (error) {
-      return serviceAuthFailure(error);
+      return serviceAuthFailure(error, e.req.raw);
     }
     return next();
   };

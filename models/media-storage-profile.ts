@@ -2,7 +2,7 @@ import { and, eq } from "drizzle-orm";
 import { database } from "@/database";
 import { mediaStorageProfile } from "@/database/schema";
 import { ServiceError } from "@/lib/errors";
-import { getApplicationOrigin } from "@/utils/sso-directory";
+import { getApplicationOrigin } from "@/modules/structure/sso-directory";
 import {
   storageProfileSchema,
   type StorageProfileInput,

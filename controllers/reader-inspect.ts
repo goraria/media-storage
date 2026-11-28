@@ -1,4 +1,4 @@
-import { readRequestBody } from "@/utils/request";
+import { readRequestBody } from "@/modules/principle/request";
 import type { Event } from "@/utils/interface";
 import { readerInspectSchema } from "@/schemas/reader-inspect";
 import { rawInspectReaderAssets as inspectReaderAssetsServices } from "@/services/reader-inspect";

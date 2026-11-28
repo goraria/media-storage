@@ -1,4 +1,5 @@
 import type { Binding, Event, AuthContext, ServiceAccess } from "@/utils/interface";
+import { createHonoRequestGuard } from "@/modules/principle/request-guard";
 import type { MiddlewareHandler } from "hono";
 
 import {
@@ -43,21 +44,4 @@ export function requireRole(...roles: string[]): MiddlewareHandler<Binding> {
     }
     return await next();
   };
-}
-
-function createHonoRequestGuard<Auth>(options: {
-  verify: (request: Request) => Promise<Auth>
-  failure: (error: unknown) => Response
-  assign: (context: Event, identity: Auth) => void
-}): MiddlewareHandler<Binding> {
-  return async (context, next) => {
-    let identity: Auth
-    try {
-      identity = await options.verify(context.req.raw)
-    } catch (error) {
-      return options.failure(error)
-    }
-    options.assign(context, identity)
-    await next()
-  }
 }

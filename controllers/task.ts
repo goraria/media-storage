@@ -1,4 +1,4 @@
-import { readRequestBody } from "@/utils/request";
+import { readRequestBody } from "@/modules/principle/request";
 import type { Event } from "@/utils/interface";
 import { taskAssetSchema } from "@/schemas/task";
 import { rawGetTaskAssetUrl as getTaskAssetUrlServices } from "@/models/media-asset";
